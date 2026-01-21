@@ -10,9 +10,9 @@ resources:
 
 # Environment-specific image configuration (same as your real system)
 images:
-- name: az-injector:latest
+- name: az-injector
   newName: nginx
-  newTag: 1.21
+  newTag: "1.21"
 
 # ConfigMap with environment-specific config (same as your real system)
 configMapGenerator:
