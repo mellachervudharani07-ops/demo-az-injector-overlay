@@ -33,7 +33,7 @@ spec:
         - name: INIT_CONTAINER_IMAGE
           value: "az-injector-init:latest"  # This will be overridden by overlay
         - name: VERSION
-          value: "v1.0.0-base"  # We'll modify this to demonstrate the issue
+          value: "v2.0.0-UPDATED-BASE-GITHUB"  # This change should NOT be detected by ArgoCD
         - name: SOURCE_REPO
           value: "demo-az-injector-base"
         resources:
