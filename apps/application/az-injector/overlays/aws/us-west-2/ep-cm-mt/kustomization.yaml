@@ -1,0 +1,43 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: az-injector-system
+
+# Reference the base (REMOTE GitHub repository - same as your real system)
+resources:
+- namespace.yaml
+- git@github.com:mellachervudharani07-ops/demo-az-injector-base//deploy/base?ref=main
+
+# Environment-specific image configuration (same as your real system)
+images:
+- name: az-injector:latest
+  newName: nginx
+  newTag: 1.21
+
+# ConfigMap with environment-specific config (same as your real system)
+configMapGenerator:
+- name: az-injector
+  namespace: az-injector-system
+  behavior: create
+  files:
+  - redis-az=configmap.yaml
+
+# Environment-specific patches (same structure as yours)
+patches:
+# Update init container image
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/2/value
+      value: "nginx:1.21"
+  target:
+    kind: Deployment
+    name: az-injector
+
+# Set validation mode
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/1/value
+      value: "permissive"
+  target:
+    kind: Deployment
+    name: az-injector

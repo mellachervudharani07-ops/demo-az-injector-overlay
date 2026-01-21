@@ -1,0 +1,16 @@
+# Redis configuration for az-injector (same as your real system)
+redis-az: |
+  # Redis configuration for ep-cm-mt environment
+  redis.host=redis.az-injector-system.svc.cluster.local
+  redis.port=6379
+  redis.password=az-injector-redis-password
+  redis.database=0
+  
+  # Connection settings
+  redis.timeout=5000
+  redis.max_connections=10
+  
+  # Environment specific settings
+  redis.cluster.name=ep-cm-mt
+  redis.region=us-west-2
+  redis.provider=aws
