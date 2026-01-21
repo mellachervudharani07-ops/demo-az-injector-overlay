@@ -3,10 +3,10 @@ kind: Kustomization
 
 namespace: az-injector-system
 
-# Reference the base (REMOTE GitHub repository - same as your real system)
+# Reference the base (LOCAL path to simulate multi-source issue)
 resources:
 - namespace.yaml
-- git@github.com:mellachervudharani07-ops/demo-az-injector-base//deploy/base?ref=main
+- base
 
 # Environment-specific image configuration (same as your real system)
 images:
